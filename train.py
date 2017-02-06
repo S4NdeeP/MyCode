@@ -22,7 +22,11 @@ print args
 
 if(args.batch_size != 1 and args.batch_size % 5 != 0):
     print ("Invalid argument")
-# to process sizes_string
+
+# Process string_sizes and create sizes
+sizes = []
+for size_string in args.sizes_string.split(','):
+    sizes.append(int(size_string))
 
 # Load the dataset
 f = gzip.open(args.mnist, 'rb')
@@ -33,6 +37,26 @@ print(shape(train_set))
 print(shape(valid_set))
 print(shape(test_set))
 
+INPUT_LAYER_SIZE = 784
+OUTPUT_LAYER_SIZE = 10
+ 
+print sizes[0]
+W = []
+
+W.append(zeros((INPUT_LAYER_SIZE, sizes[0])))
+for i in (1,args.num_hidden-1):
+    W.append(zeros((sizes[i-1], sizes[i])))
+W.append(zeros((sizes[args.num_hidden-1], OUTPUT_LAYER_SIZE)))
+
+B = []
+print args.num_hidden
+
+for i in range(0,args.num_hidden-1):
+    print i
+    B.append(zeros(sizes[i]))
+B.append(zeros(OUTPUT_LAYER_SIZE))
+
+print size(B)
 def sigmoid(h,length):
     return
 
@@ -44,7 +68,6 @@ def forward_propogation():
 
 def backward_propogation():
     return
-
 
 def loss():
     return
