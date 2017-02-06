@@ -1,4 +1,7 @@
 import argparse
+import cPickle, gzip
+from numpy import *
+
 parser = argparse.ArgumentParser()
 
 # Defining the arguments to be used
@@ -16,10 +19,38 @@ parser.add_argument("--expt_dir", action="store", dest="expt_dir", type=str, hel
 parser.add_argument("--mnist", action="store", dest="mnist", type=str, help = "Path to the mnist data in pickeled format")
 args = parser.parse_args()
 print args
-print args.momentum
-print args.lr
 
 if(args.batch_size != 1 and args.batch_size % 5 != 0):
     print ("Invalid argument")
-# to process string_sizes
+# to process sizes_string
 
+# Load the dataset
+f = gzip.open(args.mnist, 'rb')
+train_set, valid_set, test_set = cPickle.load(f)
+f.close()
+
+print(shape(train_set))
+print(shape(valid_set))
+print(shape(test_set))
+
+def sigmoid(h,length):
+    return
+
+def tanh(h,length):
+    return
+
+def forward_propogation():
+    return
+
+def backward_propogation():
+    return
+
+
+def loss():
+    return
+
+def squared_error_loss():
+    return
+
+def cross_entropy_loss():
+    return
